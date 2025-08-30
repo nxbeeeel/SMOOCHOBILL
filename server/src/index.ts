@@ -48,16 +48,22 @@ const io = new Server(server, {
 
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(helmet());
+// CORS middleware - must come before other middleware
 app.use(cors({
   origin: [
     process.env.CLIENT_URL || "http://localhost:3000",
     "https://smoochobill.vercel.app",
     "https://smoochobill-git-main-nxbeeeel.vercel.app"
   ],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  preflightContinue: false,
+  optionsSuccessStatus: 200
 }));
+
+// Other middleware
+app.use(helmet());
 app.use(compression());
 app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
