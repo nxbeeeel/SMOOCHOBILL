@@ -19,7 +19,7 @@ import OfflineIndicator from './components/OfflineIndicator';
 import LoadingSpinner from './components/LoadingSpinner';
 
 // Services
-import { initializeOfflineSync } from './services/offlineSync';
+// import { initializeOfflineSync } from './services/offlineSync';
 
 function App() {
   const { user, isAuthenticated, isLoading, checkAuth } = useAuthStore();
@@ -33,8 +33,8 @@ function App() {
     // Check online status
     checkOnlineStatus();
     
-    // Initialize offline sync
-    initializeOfflineSync();
+    // Initialize offline sync - Disabled for production
+    // initializeOfflineSync();
     
     // Set up online/offline event listeners
     const handleOnline = () => checkOnlineStatus();
