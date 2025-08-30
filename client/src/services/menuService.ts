@@ -2,12 +2,17 @@ import axios from 'axios';
 import { Product, Category } from '../types';
 import { API_URL } from '../config/api';
 
-// Create axios instance with auth interceptor
+// Create axios instance for POS endpoints (no auth required)
+const posApi = axios.create({
+  baseURL: `${API_URL}/products/pos`,
+});
+
+// Create axios instance with auth interceptor for admin endpoints
 const menuApi = axios.create({
   baseURL: `${API_URL}/products`,
 });
 
-// Add auth token to requests
+// Add auth token to admin requests
 menuApi.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -92,35 +97,32 @@ export const defaultMenuImages: Record<string, string> = {
 };
 
 export const menuService = {
-  // Get all products
+  // POS endpoints (no authentication required)
   getAllProducts: async (): Promise<Product[]> => {
-    const response = await menuApi.get('/');
+    const response = await posApi.get('/');
     return response.data;
   },
 
-  // Get product by ID
   getProductById: async (id: string): Promise<Product> => {
-    const response = await menuApi.get(`/${id}`);
+    const response = await posApi.get(`/${id}`);
     return response.data;
   },
 
-  // Search products
   searchProducts: async (query: string, categoryId?: string): Promise<Product[]> => {
     const params: any = { q: query };
     if (categoryId) {
       params.category_id = categoryId;
     }
-    const response = await menuApi.get('/search', { params });
+    const response = await posApi.get('/search', { params });
     return response.data;
   },
 
-  // Get categories
   getCategories: async (): Promise<Category[]> => {
-    const response = await menuApi.get('/categories');
+    const response = await posApi.get('/categories');
     return response.data;
   },
 
-  // Upload product image
+  // Admin endpoints (require authentication)
   uploadProductImage: async (productId: string, file: File): Promise<{ imageUrl: string }> => {
     const formData = new FormData();
     formData.append('image', file);
@@ -133,7 +135,6 @@ export const menuService = {
     return response.data;
   },
 
-  // Update product availability
   updateProductAvailability: async (productId: string, available: boolean): Promise<{ message: string }> => {
     const response = await menuApi.patch(`/${productId}/availability`, { available });
     return response.data;
