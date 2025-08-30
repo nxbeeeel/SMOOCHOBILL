@@ -20,6 +20,7 @@
     "postcss": "^8.4.32",
     "react-hot-toast": "^2.4.1",
     "react-hook-form": "^7.48.2",
+    "@hookform/resolvers": "^3.3.2",
     "zustand": "^4.4.7",
     "framer-motion": "^10.16.16",
     "react-beautiful-dnd": "^13.1.1",
