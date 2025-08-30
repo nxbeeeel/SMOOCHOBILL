@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package files first for better caching
 COPY server/package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies (using npm install instead of npm ci for better compatibility)
+RUN npm install --omit=dev
 
 # Copy source code
 COPY server/src ./src
