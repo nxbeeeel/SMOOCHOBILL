@@ -13,10 +13,12 @@ RUN npm install
 # Copy source code and assets
 COPY server/src ./src
 COPY server/tsconfig.json ./
-COPY server/database ./database
 
 # Build the application
 RUN npm run build
+
+# Copy database files to dist folder for runtime access
+RUN cp -r src/database dist/
 
 # Remove dev dependencies to reduce image size
 RUN npm prune --omit=dev
