@@ -1,0 +1,97 @@
+{
+  "short_name": "Smoocho POS",
+  "name": "Smoocho Point of Sale System",
+  "description": "Modern POS system for Smoocho Dessert Shop",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "logo152.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "logo180.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "logo167.png",
+      "type": "image/png",
+      "sizes": "167x167"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FF6B6B",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "productivity", "food"],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshot2.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Order",
+      "short_name": "Order",
+      "description": "Create a new order",
+      "url": "/pos",
+      "icons": [
+        {
+          "src": "icon-order.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "short_name": "Stock",
+      "description": "Manage inventory",
+      "url": "/inventory",
+      "icons": [
+        {
+          "src": "icon-inventory.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "short_name": "Reports",
+      "description": "View sales reports",
+      "url": "/reports",
+      "icons": [
+        {
+          "src": "icon-reports.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

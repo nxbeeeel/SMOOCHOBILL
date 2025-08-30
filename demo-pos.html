@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoocho POS - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'smoocho-pink': '#FF6B6B',
+                        'smoocho-teal': '#4ECDC4',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .touch-button {
+            min-height: 44px;
+            min-width: 44px;
+            touch-action: manipulation;
+        }
+        
+        .pos-card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s;
+        }
+        
+        .pos-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        
+        @media (min-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <div class="bg-white shadow-sm border-b px-6 py-4">
+        <div class="flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-gray-900">Smoocho POS</h1>
+            <div class="flex items-center space-x-4">
+                <div class="text-sm text-gray-600">
+                    Friday, August 30, 2025
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex h-screen">
+        <!-- Left Panel - Menu -->
+        <div class="flex-1 flex flex-col">
+            <!-- Category Tabs -->
+            <div class="bg-white border-b px-6 py-3">
+                <div class="flex space-x-1 overflow-x-auto">
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap bg-blue-600 text-white">
+                        All Items
+                    </button>
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        Signatures
+                    </button>
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        Choco Desserts
+                    </button>
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        Crispy Rice Tubs
+                    </button>
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        Kunafa Bowls
+                    </button>
+                    <button class="px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        Drinks
+                    </button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <div class="product-grid">
+                    <!-- Product Card 1 -->
+                    <div class="pos-card overflow-hidden cursor-pointer touch-button">
+                        <div class="aspect-square bg-gradient-to-br from-pink-100 to-red-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-4xl">🍦</div>
+                            <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1">
+                                <span class="text-sm font-bold text-gray-900">₹189.00</span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-semibold text-gray-900 text-sm leading-tight mb-1 line-clamp-2">
+                                Choco Tsunami
+                            </h3>
+                            <p class="text-xs text-gray-600 line-clamp-2 mb-2">
+                                Rich chocolate dessert in black cup
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">
+                                    Signatures
+                                </span>
+                                <button class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-blue-700 transition-colors">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="pos-card overflow-hidden cursor-pointer touch-button">
+                        <div class="aspect-square bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-4xl">🥭</div>
+                            <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1">
+                                <span class="text-sm font-bold text-gray-900">₹199.00</span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-semibold text-gray-900 text-sm leading-tight mb-1 line-clamp-2">
+                                Mango Tsunami
+                            </h3>
+                            <p class="text-xs text-gray-600 line-clamp-2 mb-2">
+                                White base dessert with diced mango pieces
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-700">
+                                    Signatures
+                                </span>
+                                <button class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-blue-700 transition-colors">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="pos-card overflow-hidden cursor-pointer touch-button">
+                        <div class="aspect-square bg-gradient-to-br from-green-100 to-teal-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-4xl">🍫</div>
+                            <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1">
+                                <span class="text-sm font-bold text-gray-900">₹69.00</span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-semibold text-gray-900 text-sm leading-tight mb-1 line-clamp-2">
+                                Choco Spunge
+                            </h3>
+                            <p class="text-xs text-gray-600 line-clamp-2 mb-2">
+                                Classic chocolate sponge
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-teal-100 text-teal-700">
+                                    Choco Desserts
+                                </span>
+                                <button class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-blue-700 transition-colors">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div class="pos-card overflow-hidden cursor-pointer touch-button">
+                        <div class="aspect-square bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-4xl">🍚</div>
+                            <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1">
+                                <span class="text-sm font-bold text-gray-900">₹239.00</span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-semibold text-gray-900 text-sm leading-tight mb-1 line-clamp-2">
+                                Hazelnut White Crispy Rice
+                            </h3>
+                            <p class="text-xs text-gray-600 line-clamp-2 mb-2">
+                                Hazelnut and white chocolate crispy rice
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                                    Crispy Rice Tubs
+                                </span>
+                                <button class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-blue-700 transition-colors">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="pos-card overflow-hidden cursor-pointer touch-button">
+                        <div class="aspect-square bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-4xl">🧁</div>
+                            <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1">
+                                <span class="text-sm font-bold text-gray-900">₹219.00</span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-semibold text-gray-900 text-sm leading-tight mb-1 line-clamp-2">
+                                Hazelnut Kunafa
+                            </h3>
+                            <p class="text-xs text-gray-600 line-clamp-2 mb-2">
+                                Hazelnut kunafa bowl
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
+                                    Kunafa Bowls
+                                </span>
+                                <button class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-blue-700 transition-colors">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="pos-card overflow-hidden cursor-pointer touch-button">
+                        <div class="aspect-square bg-gradient-to-br from-orange-100 to-red-100 flex items-center justify-center relative overflow-hidden">
+                            <div class="text-4xl">🥤</div>
+                            <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1">
+                                <span class="text-sm font-bold text-gray-900">₹79.00</span>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-semibold text-gray-900 text-sm leading-tight mb-1 line-clamp-2">
+                                Milo Dinauser
+                            </h3>
+                            <p class="text-xs text-gray-600 line-clamp-2 mb-2">
+                                Milo dinosaur drink
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-700">
+                                    Drinks
+                                </span>
+                                <button class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold hover:bg-blue-700 transition-colors">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Cart -->
+        <div class="w-96 bg-white border-l flex flex-col">
+            <!-- Cart Header -->
+            <div class="p-4 border-b bg-gray-50">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-semibold text-gray-900">Current Order</h2>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm text-gray-600">2 items</span>
+                        <button class="text-red-600 hover:text-red-700 text-sm font-medium">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-3">
+                <!-- Cart Item 1 -->
+                <div class="bg-white rounded-lg border border-gray-200 p-3">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-medium text-gray-900 text-sm leading-tight">
+                                Choco Tsunami
+                            </h4>
+                            <p class="text-xs text-gray-600 mt-1">
+                                ₹189.00 each
+                            </p>
+                        </div>
+                        <button class="ml-2 text-red-500 hover:text-red-700 p-1">
+                            🗑️
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between mt-3">
+                        <div class="flex items-center space-x-2">
+                            <button class="w-8 h-8 bg-gray-100 text-gray-700 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                -
+                            </button>
+                            <span class="text-lg font-semibold text-gray-900 min-w-[2rem] text-center">
+                                1
+                            </span>
+                            <button class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                                +
+                            </button>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-semibold text-gray-900">
+                                ₹189.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Item 2 -->
+                <div class="bg-white rounded-lg border border-gray-200 p-3">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-medium text-gray-900 text-sm leading-tight">
+                                Mango Tsunami
+                            </h4>
+                            <p class="text-xs text-gray-600 mt-1">
+                                ₹199.00 each
+                            </p>
+                        </div>
+                        <button class="ml-2 text-red-500 hover:text-red-700 p-1">
+                            🗑️
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between mt-3">
+                        <div class="flex items-center space-x-2">
+                            <button class="w-8 h-8 bg-gray-100 text-gray-700 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                -
+                            </button>
+                            <span class="text-lg font-semibold text-gray-900 min-w-[2rem] text-center">
+                                1
+                            </span>
+                            <button class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                                +
+                            </button>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-semibold text-gray-900">
+                                ₹199.00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="border-t bg-gray-50 p-4 space-y-3">
+                <!-- Totals -->
+                <div class="space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-600">Subtotal:</span>
+                        <span class="font-medium">₹388.00</span>
+                    </div>
+                    
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-600">Tax (5%):</span>
+                        <span class="font-medium">₹19.40</span>
+                    </div>
+                    
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-600">Discount:</span>
+                        <span class="font-medium text-green-600">-₹0.00</span>
+                    </div>
+                    
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between text-lg font-bold">
+                            <span>Total:</span>
+                            <span>₹407.40</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Button -->
+                <button class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Proceed to Payment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal (Hidden by default) -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 hidden" id="paymentModal">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <!-- Header -->
+            <div class="p-6 border-b">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-gray-900">Complete Payment</h2>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        ✕
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 space-y-6">
+                <!-- Order Summary -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Order Summary</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">1x Choco Tsunami</span>
+                            <span class="font-medium">₹189.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">1x Mango Tsunami</span>
+                            <span class="font-medium">₹199.00</span>
+                        </div>
+                        <div class="border-t pt-2 mt-3">
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total:</span>
+                                <span>₹407.40</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Type -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Order Type</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button class="p-3 rounded-lg border text-sm font-medium border-blue-600 bg-blue-50 text-blue-700">
+                            Dine In
+                        </button>
+                        <button class="p-3 rounded-lg border text-sm font-medium border-gray-200 text-gray-700 hover:border-gray-300">
+                            Takeaway
+                        </button>
+                        <button class="p-3 rounded-lg border text-sm font-medium border-gray-200 text-gray-700 hover:border-gray-300">
+                            Zomato
+                        </button>
+                        <button class="p-3 rounded-lg border text-sm font-medium border-gray-200 text-gray-700 hover:border-gray-300">
+                            Swiggy
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Payment Method</h3>
+                    <div class="space-y-2">
+                        <button class="w-full p-3 rounded-lg border flex items-center space-x-3 border-blue-600 bg-blue-50 text-blue-700">
+                            <span>💵</span>
+                            <span class="font-medium">Cash</span>
+                        </button>
+                        <button class="w-full p-3 rounded-lg border flex items-center space-x-3 border-gray-200 text-gray-700 hover:border-gray-300">
+                            <span>💳</span>
+                            <span class="font-medium">Card</span>
+                        </button>
+                        <button class="w-full p-3 rounded-lg border flex items-center space-x-3 border-gray-200 text-gray-700 hover:border-gray-300">
+                            <span>📱</span>
+                            <span class="font-medium">Online</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-6 border-t bg-gray-50">
+                <div class="flex space-x-3">
+                    <button class="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button class="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        Complete Payment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple demo interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add to cart functionality
+            const addButtons = document.querySelectorAll('.pos-card button');
+            addButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    alert('Item added to cart!');
+                });
+            });
+
+            // Product card click
+            const productCards = document.querySelectorAll('.pos-card');
+            productCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    alert('Item added to cart!');
+                });
+            });
+
+            // Payment button
+            const paymentButton = document.querySelector('button:contains("Proceed to Payment")');
+            if (paymentButton) {
+                paymentButton.addEventListener('click', function() {
+                    document.getElementById('paymentModal').classList.remove('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
