@@ -15,6 +15,7 @@ interface POSCartProps {
   subtotal: number;
   total: number;
   onProceedToPayment: () => void;
+  tax: number;
 }
 
 const POSCart: React.FC<POSCartProps> = ({
@@ -25,6 +26,7 @@ const POSCart: React.FC<POSCartProps> = ({
   subtotal,
   total,
   onProceedToPayment,
+  tax,
 }) => {
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -124,7 +126,7 @@ const POSCart: React.FC<POSCartProps> = ({
             
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Tax (5%):</span>
-              <span className="font-medium">₹{(subtotal * 0.05).toFixed(2)}</span>
+              <span className="font-medium">₹{tax.toFixed(2)}</span>
             </div>
             
             <div className="flex justify-between text-sm">
@@ -135,7 +137,7 @@ const POSCart: React.FC<POSCartProps> = ({
             <div className="border-t pt-2">
               <div className="flex justify-between text-lg font-bold">
                 <span>Total:</span>
-                <span>₹{(subtotal * 1.05).toFixed(2)}</span>
+                <span>₹{total.toFixed(2)}</span>
               </div>
             </div>
           </div>
