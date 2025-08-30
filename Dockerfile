@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package files first for better caching
 COPY server/package*.json ./
 
-# Install dependencies (using npm install instead of npm ci for better compatibility)
-RUN npm install --omit=dev
+# Install ALL dependencies (including dev dependencies needed for building)
+RUN npm install
 
 # Copy source code
 COPY server/src ./src
@@ -16,6 +16,9 @@ COPY server/tsconfig.json ./
 
 # Build the application
 RUN npm run build
+
+# Remove dev dependencies to reduce image size
+RUN npm prune --omit=dev
 
 # Expose port
 EXPOSE 5000
