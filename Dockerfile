@@ -10,9 +10,10 @@ COPY server/package*.json ./
 # Install ALL dependencies (including dev dependencies needed for building)
 RUN npm install
 
-# Copy source code
+# Copy source code and assets
 COPY server/src ./src
 COPY server/tsconfig.json ./
+COPY server/database ./database
 
 # Build the application
 RUN npm run build
