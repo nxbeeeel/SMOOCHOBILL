@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Order, CreateOrderRequest, UpdateOrderRequest } from '../types';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 // Create axios instance with auth interceptor
 const orderApi = axios.create({
