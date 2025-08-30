@@ -5,8 +5,8 @@
     "sourceDirectory": "server",
     "buildCommand": "npm install && npm run build",
     "watchPatterns": [
-      "src/**/*",
-      "package.json"
+      "server/src/**/*",
+      "server/package.json"
     ]
   },
   "deploy": {
