@@ -1,177 +1,133 @@
-# Smoocho POS + Inventory Management System
+# Smoocho POS System
 
-A full-featured Point of Sale and Inventory Management System designed specifically for Smoocho Dessert Shop. Built for tablet use with offline capabilities, thermal printer support, and integrations with delivery platforms.
+A comprehensive Point of Sale system built with React, Node.js, and PostgreSQL.
 
-## 🚀 Features
+## Features
 
-### Core POS Features
-- **Touch-optimized billing interface** with large buttons and easy navigation
-- **Multiple order types**: Dine-in, Takeaway, Zomato, Swiggy
-- **Payment processing**: Cash, Card (Paytm integration), Digital payments
-- **Bill management**: Generate, edit, print, and reprint bills
-- **Discount system**: Percentage and flat discounts
-- **Real-time inventory deduction** based on sales
+- **Inventory Management**: Track stock levels, set alerts, manage suppliers
+- **Sales & Billing**: Process transactions, generate invoices, handle returns
+- **Customer Management**: Store customer information and purchase history
+- **Reporting & Analytics**: Sales reports, inventory reports, financial insights
+- **Multi-user Support**: Role-based access control
+- **Real-time Updates**: Live inventory and sales synchronization
 
-### Inventory Management
-- **Stock tracking** with automatic deduction
-- **Low stock alerts** with customizable thresholds
-- **Expiry date management**
-- **Recipe-based inventory** (ingredients per product)
-- **Reorder reminders** via Email and WhatsApp
+## Tech Stack
 
-### Integrations
-- **Zomato & Swiggy** order synchronization
-- **Paytm card machine** integration
-- **Thermal printer** support
-- **WhatsApp API** for alerts
-- **Email notifications** via SMTP
+- **Frontend**: React 18, TypeScript, Tailwind CSS
+- **Backend**: Node.js, Express, TypeScript
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: JWT with bcrypt
+- **Real-time**: Socket.io
+- **Deployment**: Vercel (Frontend) + Railway (Backend)
 
-### Offline Capabilities
-- **Full offline operation** for billing and inventory
-- **Automatic sync** when internet connection returns
-- **Local database** (SQLite) for offline data storage
-- **Conflict resolution** for data synchronization
-
-### Reporting & Analytics
-- **Daily sales reports** with print/PDF export
-- **Monthly summaries** with profit analysis
-- **Payment method filtering**
-- **Stock usage reports**
-- **Real-time dashboard**
-
-## 🛠 Technology Stack
-
-- **Frontend**: React 18 + TypeScript + Tailwind CSS
-- **Backend**: Node.js + Express + TypeScript
-- **Database**: SQLite (local) + Supabase (cloud)
-- **Real-time**: WebSocket + Socket.io
-- **Offline**: Service Workers + IndexedDB
-- **PWA**: Progressive Web App capabilities
-- **Printing**: Thermal printer APIs
-
-## 📱 Installation & Setup
+## Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
+- PostgreSQL 14+
 - npm or yarn
-- Android tablet or device for testing
 
-### Quick Start
+### Installation
 
-1. **Clone and install dependencies:**
-```bash
-git clone <repository-url>
-cd smoocho-pos
-npm run install-all
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/nxbeeeel/SMOOCHOBILL.git
+   cd SMOOCHOBILL
+   ```
 
-2. **Environment Setup:**
-```bash
-# Copy environment files
-cp server/.env.example server/.env
-cp client/.env.example client/.env
-```
+2. **Install dependencies**
+   ```bash
+   # Install backend dependencies
+   cd server
+   npm install
+   
+   # Install frontend dependencies
+   cd ../client
+   npm install
+   ```
 
-3. **Configure your settings:**
-   - Update database credentials
-   - Add API keys for integrations
-   - Configure printer settings
-   - Set up WhatsApp and email alerts
+3. **Set up environment variables**
+   ```bash
+   # Backend (.env)
+   DATABASE_URL="postgresql://username:password@localhost:5432/smoocho_pos"
+   JWT_SECRET="your-secret-key"
+   PORT=5000
+   
+   # Frontend (.env)
+   REACT_APP_API_URL="http://localhost:5000"
+   REACT_APP_WS_URL="ws://localhost:5000"
+   ```
 
-4. **Start development servers:**
-```bash
-npm run dev
-```
+4. **Set up the database**
+   ```bash
+   cd server
+   npm run db:generate
+   npm run db:push
+   npm run db:seed
+   ```
 
-5. **Access the application:**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
+5. **Start the development servers**
+   ```bash
+   # Start backend (from server directory)
+   npm run dev
+   
+   # Start frontend (from client directory, in new terminal)
+   npm start
+   ```
 
-## 📋 System Requirements
+## Default Login
 
-### Hardware
-- **Android tablet** (recommended: 10" or larger)
-- **Thermal printer** (80mm or 58mm)
-- **Paytm card machine** (for card payments)
-- **Stable internet connection** (for cloud sync)
+- **Username**: `admin`
+- **Password**: `admin123`
 
-### Software
-- **Android 8.0+** or **Chrome browser**
-- **PWA support** for offline functionality
-- **USB/Bluetooth** for printer connectivity
+## Production Deployment
 
-## 🔧 Configuration
+### Frontend (Vercel)
+- Automatically deploys from GitHub main branch
+- Environment variables configured in vercel.json
+- Builds from client/build directory
 
-### Printer Setup
-1. Connect thermal printer via USB/Bluetooth
-2. Configure printer settings in admin panel
-3. Test print functionality
+### Backend (Railway)
+- Automatically deploys from GitHub main branch
+- Uses Nixpacks for Node.js deployment
+- PostgreSQL database hosted on Railway
 
-### Payment Integration
-1. Configure Paytm merchant credentials
-2. Test card payment flow
-3. Set up webhook endpoints
+## API Endpoints
 
-### Delivery Platform Integration
-1. Add Zomato/Swiggy API credentials
-2. Configure order sync intervals
-3. Test order import functionality
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
+- `GET /api/auth/me` - Get current user
 
-## 📊 Database Schema
+### Inventory
+- `GET /api/inventory` - Get all inventory items
+- `POST /api/inventory` - Create new inventory item
+- `PUT /api/inventory/:id` - Update inventory item
+- `DELETE /api/inventory/:id` - Delete inventory item
 
-### Core Tables
-- `users` - User accounts and roles
-- `products` - Menu items and pricing
-- `categories` - Product categories
-- `orders` - Sales orders and bills
-- `order_items` - Items in each order
-- `inventory` - Stock items and quantities
-- `transactions` - Payment transactions
-- `integrations` - External platform data
+### Sales
+- `GET /api/sales` - Get all sales
+- `POST /api/sales` - Create new sale
+- `GET /api/sales/:id` - Get specific sale
 
-## 🔐 Security Features
+### Customers
+- `GET /api/customers` - Get all customers
+- `POST /api/customers` - Create new customer
+- `PUT /api/customers/:id` - Update customer
 
-- **JWT authentication** for secure login
-- **Role-based access control** (Admin, Cashier)
-- **Data encryption** for sensitive information
-- **Audit logging** for all transactions
-- **Secure API endpoints** with rate limiting
+## Contributing
 
-## 📱 PWA Features
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-- **Offline-first** architecture
-- **App-like experience** on tablets
-- **Push notifications** for alerts
-- **Background sync** for data synchronization
-- **Install prompt** for easy app installation
+## License
 
-## 🚀 Deployment
-
-### Production Build
-```bash
-npm run build
-```
-
-### Docker Deployment
-```bash
-docker-compose up -d
-```
-
-### Manual Deployment
-1. Build the client application
-2. Set up production environment variables
-3. Configure reverse proxy (nginx)
-4. Set up SSL certificates
-5. Configure database backups
-
-## 📞 Support
-
-For technical support or feature requests, please contact the development team.
-
-## 📄 License
-
-MIT License - see LICENSE file for details.
+This project is licensed under the MIT License.
 
 ---
 
-**Built with ❤️ for Smoocho Dessert Shop**
+**Last updated**: 2025-08-30 13:15 UTC - Force deployment trigger
