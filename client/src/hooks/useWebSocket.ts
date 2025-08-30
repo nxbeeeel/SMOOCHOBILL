@@ -1,6 +1,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { WebSocketMessage } from '../types';
+import { WS_URL } from '../config/api';
 
 interface UseWebSocketReturn {
   connect: (token: string) => void;
@@ -18,7 +19,7 @@ export const useWebSocket = (): UseWebSocketReturn => {
       return;
     }
 
-    const socket = io(process.env.REACT_APP_WS_URL || 'http://localhost:5000', {
+    const socket = io(WS_URL, {
       auth: {
         token,
       },

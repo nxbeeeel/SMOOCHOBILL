@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { Product, Category } from '../types';
-
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+import { API_URL } from '../config/api';
 
 // Create axios instance with auth interceptor
 const menuApi = axios.create({
-  baseURL: `${API_BASE_URL}/products`,
+  baseURL: `${API_URL}/products`,
 });
 
 // Add auth token to requests
