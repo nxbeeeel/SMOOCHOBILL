@@ -177,8 +177,8 @@ const POSPage: React.FC = () => {
         <POSPayment
           cart={cart}
           total={total}
-          onClose={() => setShowPayment(false)}
-          onPaymentComplete={() => {
+          onCancel={() => setShowPayment(false)}
+          onCompletePayment={() => {
             clearCart();
             setShowPayment(false);
           }}
