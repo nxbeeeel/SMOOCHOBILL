@@ -153,7 +153,6 @@ const POSPage: React.FC = () => {
             <POSMenu 
               products={filteredProducts}
               onAddToCart={addToCart}
-              getProductImage={menuService.getProductImage}
             />
           </div>
         </div>
